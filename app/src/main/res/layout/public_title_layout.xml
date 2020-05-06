@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:id="@+id/ral_title"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dp_20"
+    android:layout_height="@dimen/dp_70">
+
+
+    <ImageView
+        android:clickable="true"
+        android:id="@+id/iv_title_back"
+        android:layout_marginTop="@dimen/dp_15"
+        android:src="@mipmap/back_nomal"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="@dimen/dp_30"
+        android:scaleType="center"
+        android:layout_height="@dimen/dp_20" />
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="返回"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:text=""
+        android:textSize="@dimen/sp_18"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_title_right"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:textSize="@dimen/sp_16"
+        android:text="高级搜索"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginRight="@dimen/dp_10"/>
+
+
+
+
+    <ImageView
+        android:visibility="invisible"
+        android:clickable="true"
+        android:id="@+id/iv_search"
+        android:padding="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_10"
+        android:src="@mipmap/search001"
+        android:layout_width="35dp"
+        android:layout_height="match_parent" />
+</LinearLayout>

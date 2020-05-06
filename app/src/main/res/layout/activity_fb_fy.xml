@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.FbFyActivity">
+
+
+    <include layout="@layout/public_title_layout"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:background="#ffecedf1"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_16"
+            android:orientation="vertical">
+
+            //第一部分
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16"
+                android:background="@drawable/bg_dia_shape"
+                android:orientation="vertical">
+
+                //小区
+                <LinearLayout
+                    android:id="@+id/layout_szxq"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="所在小区"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_szxq"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择小区"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+                //楼栋
+                <LinearLayout
+                    android:id="@+id/layout_ldh"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="楼栋号"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_ldh"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择楼栋号"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+
+                //房间号
+                <LinearLayout
+                    android:id="@+id/layout_fjh"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="房间号"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_fjh"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择房间"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+                //期望租金
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="期望租金"/>
+
+                    <EditText
+                        android:id="@+id/et_fbfy_qwzj"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <TextView
+                        android:textSize="@dimen/sp_15"
+                        android:text="元/月"
+                        android:textColor="#6D7278"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+                //出租方式
+                <LinearLayout
+                    android:id="@+id/layout_czfs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="出租方式"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_czfs"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+
+
+
+                //支付方式
+                <LinearLayout
+                    android:id="@+id/layout_zflx"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="支付类型"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_zflx"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择支付类型"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+                //面积
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="面积"/>
+
+                    <EditText
+                        android:id="@+id/et_fbfy_mj"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请输入面积"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <TextView
+                        android:textSize="@dimen/sp_15"
+                        android:text="m²"
+                        android:textColor="#6D7278"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+                //朝向
+                <LinearLayout
+                    android:id="@+id/layout_cx"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="朝向"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_cx"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择朝向"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+
+                //水电性质
+                <LinearLayout
+                    android:id="@+id/layout_sdxz"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="水电性质"/>
+
+                    <TextView
+                        android:id="@+id/et_fbfy_sdxz"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择水电性质"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+
+                //租期
+                <LinearLayout
+                    android:id="@+id/layout_zq"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="wrap_content"
+                        android:text="租期"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/et_fbfy_zq"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_20"
+                        android:hint="请选择租期"
+                        android:background="@null"
+                        android:textColor="#6D7278"
+                        android:textColorHint="#6D7278"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow"/>
+
+
+                </LinearLayout>
+
+
+
+
+                //房间照片
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="*"
+                        android:textColor="@color/textcolor_17"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="房间照片"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="7dp"
+                    android:padding="@dimen/dp_3">
+
+                    <com.sz.kejin.czfcs.view.MyGridView
+                        android:id="@+id/gv_pcr_pto1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:horizontalSpacing="5dp"
+                        android:numColumns="2"
+                        android:scrollbars="none"
+                        android:stretchMode="columnWidth"
+                        android:verticalSpacing="5dp"/>
+
+                </RelativeLayout>
+
+
+
+                //入住信息
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="入住信息:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_fbfy_rzxx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:textSize="@dimen/sp_15"
+                    android:hint="请输入入住信息"
+                    android:textColor="#6D7278"
+                    android:textColorHint="#AEAEAE"
+                    android:minHeight="@dimen/dp_48"/>
+
+
+
+
+
+
+                //房源介绍
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="房源介绍:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_fbfy_fyjs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:textSize="@dimen/sp_15"
+                    android:hint="请输入房源介绍"
+                    android:textColor="#6D7278"
+                    android:textColorHint="#AEAEAE"
+                    android:minHeight="@dimen/dp_48"/>
+
+
+
+
+            </LinearLayout>
+
+
+            //第二部分
+
+
+
+
+            <TextView
+                android:id="@+id/tv_tj"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:background="@drawable/btn_bg"
+                android:layout_marginTop="@dimen/dp_30"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_16"
+                android:text="确认提交"
+                android:textColor="@color/white" />
+
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>

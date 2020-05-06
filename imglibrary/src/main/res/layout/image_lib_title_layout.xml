@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/main_color"
+    android:id="@+id/ral_title"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dp_20"
+    android:layout_height="@dimen/dp_70"
+    tools:ignore="ResourceName">
+
+
+    <ImageView
+        android:clickable="true"
+        android:id="@+id/iv_title_back"
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@mipmap/back_press"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="返回"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/tv_toolbar_title"
+        android:text=""
+        android:textSize="18sp"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_10"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent" />
+
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/tv_over_action"
+        android:text="完成"
+        android:padding="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_10"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_56"
+        android:background="@drawable/bg_dia_shape"
+        android:orientation="horizontal">
+        
+        <ImageView
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:src="@mipmap/img_sq"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mTv_tab_title"
+            android:layout_below="@+id/mIv_tab"
+            android:text="经济发展"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/sp_16"
+            android:gravity="center_vertical"
+            android:textColor="@color/hint_color" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

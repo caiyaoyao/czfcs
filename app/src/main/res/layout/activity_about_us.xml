@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/public_title_layout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_20">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_140"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/gywm_bg"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_80"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:padding="@dimen/dp_16"
+                    android:background="@drawable/bg_dia_shape"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/dp_50"
+                            android:src="@mipmap/login_main_img" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_60"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginLeft="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="版权所有:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="昆山市经济技术开发区管委会"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginLeft="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="通讯地址:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="江苏省昆山市前进中路167号"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:orientation="horizontal"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginLeft="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="邮政编码:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="215300"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="单位总机:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_tel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="0512-57303999"
+                                android:textColor="@color/skyBlue"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="传真号码:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="0512-57921156"
+                                android:textColor="@color/skyBlue"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_10">
+
+                            <TextView
+                                android:layout_width="@dimen/dp_80"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:text="技术支持:"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_5"
+                                android:text="科进计算机"
+                                android:textColor="@color/text_about_us"
+                                android:textSize="@dimen/sp_14" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/monsoon"
+                            android:layout_marginLeft="@dimen/dp_90"
+                            android:layout_marginRight="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_5"
+                            />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>

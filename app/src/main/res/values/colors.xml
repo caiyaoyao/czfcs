@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#008577</color>-->
+<!--    <color name="colorPrimaryDark">#00574B</color>-->
+<!--    <color name="colorAccent">#D81B60</color>-->
+
+    <color name="hint_color">#5A5A5A</color>
+    <color name="login_text_color">#6D7278</color>
+    <color name="zhtColor02">#0DC3B6</color>
+    <color name="blue">#0000ff</color><!--蓝色 -->
+    <color name="stone">#EEEEEE</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="monsoon">#777777</color>
+    <color name="skyBlue">#00CCFF</color>
+    <color name="divide_color">#EFF1F6</color>
+    <color name="zwcj_info_color">#178BF6</color>
+    <color name="zw_bdwc">#0091FF</color>
+    <color name="zw_zzbd">#FA8300</color>
+    <color name="main_text_blue">#178BF6</color>
+    <color name="test_color">#00407FFF</color>
+    <color name="oil">#444444</color>
+    <color name="sto">#929292</color>
+    <color name="orange">#EF8200</color>
+    <color name="sp_tg">#4CAF50</color>
+    <color name="sp_dd">#FA8300</color>
+    <color name="sp_wtg">#E02020</color>
+    <color name="jet">#222222</color>
+    <color name="redColor">#FF0000</color>
+    <color name="black01">#77000000</color>
+    <color name="aluminum">#999999</color>
+    <color name="orangeColor">#FF7900</color>
+    <color name="fjzt_wjh">#D8D8D8</color>
+    <color name="fjzt_zgz">#FFFFEB3B</color>
+    <color name="fjzt_zz">#3CB38D</color>
+    <color name="fjzt_cz">#3382FF</color>
+    <color name="fjzt_zm">#E3534C</color>
+    <color name="fjzt_tv">#8698A3</color>
+    <color name="fjzt_hg">#4CAF50</color>
+    <color name="line_bg">#E3E3E3</color>
+    <color name="text_ry_moren">#6D7278</color>
+    <color name="main_text_shzl">#313438</color>
+    <color name="syj_tv_color">#3382FF</color>
+    <color name="text_about_us">#8698A3</color>
+</resources>

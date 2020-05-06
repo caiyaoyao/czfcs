@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sp_1">1sp</dimen>
+    <dimen name="sp_2">2sp</dimen>
+    <dimen name="sp_3">3sp</dimen>
+    <dimen name="sp_4">4sp</dimen>
+    <dimen name="sp_5">5sp</dimen>
+    <dimen name="sp_6">6sp</dimen>
+    <dimen name="sp_7">7sp</dimen>
+    <dimen name="sp_8">8sp</dimen>
+    <dimen name="sp_9">9sp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="sp_11">11sp</dimen>
+    <dimen name="sp_12">14sp</dimen>
+    <dimen name="sp_13">15sp</dimen>
+    <dimen name="sp_14">16sp</dimen>
+    <dimen name="sp_15">17sp</dimen>
+    <dimen name="sp_16">18sp</dimen>
+    <dimen name="sp_17">19sp</dimen>
+    <dimen name="sp_18">20sp</dimen>
+    <dimen name="sp_19">21sp</dimen>
+    <dimen name="sp_20">22sp</dimen>
+    <dimen name="sp_21">23sp</dimen>
+    <dimen name="sp_22">24sp</dimen>
+    <dimen name="sp_23">25sp</dimen>
+    <dimen name="sp_24">24sp</dimen>
+    <dimen name="sp_25">25sp</dimen>
+    <dimen name="sp_26">26sp</dimen>
+    <dimen name="sp_27">27sp</dimen>
+    <dimen name="sp_28">28sp</dimen>
+    <dimen name="sp_29">29sp</dimen>
+    <dimen name="dp_800">800dp</dimen>
+
+
+</resources>
