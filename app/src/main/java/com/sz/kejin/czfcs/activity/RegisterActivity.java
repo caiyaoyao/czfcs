@@ -74,7 +74,7 @@ public class RegisterActivity extends BasicActivity {
 
         rb1 = findViewById(R.id.rb1);
 
-        //
+
         rb2 = findViewById(R.id.rb2);
 
     }
