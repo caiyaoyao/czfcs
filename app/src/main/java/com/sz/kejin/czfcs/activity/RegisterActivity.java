@@ -83,7 +83,7 @@ public class RegisterActivity extends BasicActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        setTitle("注册");
+        setTitle("租客注册");
     }
 
 

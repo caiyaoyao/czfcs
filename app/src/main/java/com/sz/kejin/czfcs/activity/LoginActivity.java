@@ -50,7 +50,7 @@ public class LoginActivity extends BasicActivity {
     private ImageView iv_back;
     private EditText et_sfzh,et_sjh;
     private TextView tv_tj,tv_register;
-    private RadioButton rb1,rb2;
+    private RadioButton rb1,rb2,rb3;
 
 
 
@@ -69,6 +69,7 @@ public class LoginActivity extends BasicActivity {
 
         rb1 = findViewById(R.id.rb1);
         rb2 = findViewById(R.id.rb2);
+        rb3 = findViewById(R.id.rb3);
 
     }
 
@@ -114,6 +115,7 @@ public class LoginActivity extends BasicActivity {
     private  String type = Constants.USER_TYPE_YK;
 
 
+
     private void login(){
 
 
@@ -145,6 +147,8 @@ public class LoginActivity extends BasicActivity {
             type = Constants.USER_TYPE_FD;
         } else if (rb2.isChecked()){
             type = Constants.USER_TYPE_YK;
+        } else if (rb3.isChecked()) {
+            type = Constants.USER_TYPE_GLY;
         }
         params.put("kind", type);
 

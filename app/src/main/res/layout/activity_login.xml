@@ -167,7 +167,7 @@
                                     android:textSize="@dimen/sp_14"
                                     android:buttonTint="#3382FF"
                                     android:textColor="@color/text_main_color"
-                                    android:text="我是房东"/>
+                                    android:text="房东"/>
 
                                 <RadioButton
                                     android:id="@+id/rb2"
@@ -177,7 +177,16 @@
                                     android:buttonTint="#3382FF"
                                     android:checked="true"
                                     android:textColor="@color/text_main_color"
-                                    android:text="我是租户"/>
+                                    android:text="租客"/>
+
+                                <RadioButton
+                                    android:id="@+id/rb3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textSize="@dimen/sp_14"
+                                    android:buttonTint="#3382FF"
+                                    android:textColor="@color/text_main_color"
+                                    android:text="管理员"/>
 
 
                             </RadioGroup>
