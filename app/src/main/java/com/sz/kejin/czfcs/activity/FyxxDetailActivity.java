@@ -21,7 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.alertview.OnItemClickListener;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.drawee.drawable.ScalingUtils;
@@ -38,7 +39,10 @@ import com.google.gson.reflect.TypeToken;
 import com.sz.kejin.czfcs.R;
 import com.sz.kejin.czfcs.adapter.CommentExpandAdapter;
 import com.sz.kejin.czfcs.adapter.ImagesPagerAdapter;
+import com.sz.kejin.czfcs.adapter.MainRecyclerTabAdapter;
+import com.sz.kejin.czfcs.adapter.ZbtsRecyclerTabAdapter;
 import com.sz.kejin.czfcs.bean.BaseBean;
+import com.sz.kejin.czfcs.bean.BasicTableItemBean;
 import com.sz.kejin.czfcs.bean.CommentBean;
 import com.sz.kejin.czfcs.bean.CommentDetailBean;
 import com.sz.kejin.czfcs.bean.ImageInfo;
@@ -49,6 +53,7 @@ import com.sz.kejin.czfcs.bean.UserInfoBySfzBean;
 import com.sz.kejin.czfcs.constant.Constants;
 import com.sz.kejin.czfcs.constant.IntentConstants;
 import com.sz.kejin.czfcs.constant.SPConstants;
+import com.sz.kejin.czfcs.helper.GridSpacingItemDecoration;
 import com.sz.kejin.czfcs.helper.OkHttpHelper;
 import com.sz.kejin.czfcs.helper.PermissionHelper;
 import com.sz.kejin.czfcs.interfaces.OnPermissionGrantListener;
@@ -62,7 +67,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -94,7 +103,7 @@ public class FyxxDetailActivity extends BasicActivity {
 
     private int fjId;
 
-    private TextView tv_fjxx,tv_fz,tv_fzlx,tv_mj,tv_cx,tv_fb,tv_sssq,tv_sd,tv_lc,tv_zq,tv_rzyq,tv_fyjs;
+    private TextView tv_fjxx,tv_fz,tv_fzlx,tv_mj,tv_cx,tv_fb,tv_sssq,tv_sd,tv_lc,tv_zq,tv_rzyq,tv_fyjs,tv_ld,tv_fjh;
 
     private Boolean isLogined = false;
 
@@ -103,6 +112,15 @@ public class FyxxDetailActivity extends BasicActivity {
 
 
     private int type = 0;//0 收藏  1 取消收藏/已收藏
+
+
+    private TextView tv_ckwz,tv_wz;
+    private RecyclerView rv_zbts;
+
+    private ArrayList<BasicTableItemBean> tableItemData1 = new ArrayList<>();
+    private String[] rvDatas1 = new String[]{"公交","地铁","学校","医院","银行","超市","商场","餐馆","酒店","景点"};
+    private int[] rvImgIds1 = new int[]{R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs};
+    private ZbtsRecyclerTabAdapter zbtsAdapter;
 
 
     @Override
@@ -137,6 +155,8 @@ public class FyxxDetailActivity extends BasicActivity {
         tv_fb = findViewById(R.id.tv_fb);
         tv_sssq = findViewById(R.id.tv_sssq);
         tv_sd = findViewById(R.id.tv_sd);
+        tv_ld = findViewById(R.id.tv_ld);
+        tv_fjh = findViewById(R.id.tv_fjh);
 //        tv_lc = findViewById(R.id.tv_lc);
         tv_zq = findViewById(R.id.tv_zq);
         tv_rzyq = findViewById(R.id.tv_rzyq);
@@ -144,11 +164,24 @@ public class FyxxDetailActivity extends BasicActivity {
 
         ratingBar = findViewById(R.id.raingBar);
 
+        tv_ckwz = findViewById(R.id.tv_wzck);
+        tv_wz = findViewById(R.id.tv_wz);
+
+        rv_zbts = findViewById(R.id.rv_fyxx_detail_zbts);
+        rv_zbts.setLayoutManager(new StaggeredGridLayoutManager(5, LinearLayoutManager.VERTICAL));
+
    }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
         setTitle("房源详情");
+
+        for (int i = 0; i < rvImgIds1.length; i++) {
+            BasicTableItemBean item = new BasicTableItemBean(rvImgIds1[i], rvDatas1[i]);
+            tableItemData1.add(i,item);
+        }
+        zbtsAdapter = new ZbtsRecyclerTabAdapter(tableItemData1);
+        rv_zbts.setAdapter(zbtsAdapter);
 
     }
 
@@ -201,6 +234,10 @@ public class FyxxDetailActivity extends BasicActivity {
                                     tv_zq.setText(fjDetailBeans.getZq());
                                     tv_rzyq.setText(fjDetailBeans.getRzxx());
                                     tv_fyjs.setText(fjDetailBeans.getFjqk());
+                                    tv_wz.setText(fjDetailBeans.getXqName() + fjDetailBeans.getLdh() + "栋" + fjDetailBeans.getSh() + "室");
+
+                                    tv_ld.setText(fjDetailBeans.getLdh() + "栋");
+                                    tv_fjh.setText(fjDetailBeans.getSh() + "室");
 
 
 //                                    ratingBar.setRating(Math.round(fjDetailBeans.getPf()));
@@ -220,15 +257,13 @@ public class FyxxDetailActivity extends BasicActivity {
                                     if (!TextUtils.isEmpty(fjDetailBeans.getFjzp())) {
 
                                         String[] str1 = fjDetailBeans.getFjzp().split(",");
+                                        imageInfoList.clear();
 
                                         for (int i = 0; i < str1.length; i++) {
                                             imageInfoList.add(new ImageInfo(OkHttpHelper.ROOT + str1[i]));
                                         }
 
 
-                                        //设置图片轮播
-                                        int[] imgaeIds = new int[]{R.id.pager_image1, R.id.pager_image2, R.id.pager_image3, R.id.pager_image4,
-                                                R.id.pager_image5, R.id.pager_image6, R.id.pager_image7, R.id.pager_image8};
                                         String[] titles = new String[imageInfoList.size()];
                                         List<SimpleDraweeView> simpleDraweeViewList = new ArrayList<>();
 
@@ -253,7 +288,7 @@ public class FyxxDetailActivity extends BasicActivity {
                                                     .build();
                                             simpleDraweeView.setController(controller);
 
-                                            simpleDraweeView.setId(imgaeIds[i]);//给view设置id
+                                            simpleDraweeView.setId(imageInfoList.get(i).getId());//给view设置id
                                             simpleDraweeView.setTag(imageInfoList.get(i));
                                             simpleDraweeView.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -835,6 +870,28 @@ public class FyxxDetailActivity extends BasicActivity {
             }
         });
 
+        tv_ckwz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FyxxDetailActivity.this, FastPathMapActivity.class);
+
+                intent.putExtra("y", "31.359946");
+                intent.putExtra("x", "120.956933");
+
+
+                startActivity(intent);
+            }
+        });
+
+        zbtsAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                Intent intent = new Intent(FyxxDetailActivity.this, PoiSearchActivity.class);
+                intent.putExtra(IntentConstants.FJ_DATA, rvDatas1[position]);
+                startActivity(intent);
+            }
+        });
+
 
         ratingBar.setOnRatingChangeListener(new BaseRatingBar.OnRatingChangeListener() {
             @Override
@@ -848,7 +905,7 @@ public class FyxxDetailActivity extends BasicActivity {
             }
         });
 
-       tv_comment.setOnClickListener(new View.OnClickListener() {
+        tv_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isLogined) {
@@ -859,6 +916,9 @@ public class FyxxDetailActivity extends BasicActivity {
                 }
             }
         });
+
+
+
 
     }
 

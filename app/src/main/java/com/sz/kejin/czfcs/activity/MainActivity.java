@@ -215,7 +215,7 @@ public class MainActivity extends BasicActivity {
             public void onPermissionGranted(PermissionHelper.Permission... grantedPermissions) {
                 super.onPermissionGranted(grantedPermissions);
             }
-        },PermissionHelper.Permission.WRITE_EXTERNAL_STORAGE, PermissionHelper.Permission.READ_EXTERNAL_STORAGE, PermissionHelper.Permission.CAMERA);
+        },PermissionHelper.Permission.WRITE_EXTERNAL_STORAGE, PermissionHelper.Permission.READ_EXTERNAL_STORAGE, PermissionHelper.Permission.CAMERA, PermissionHelper.Permission.ACCESS_COARSE_LOCATION);
 
 
         checkUpgrade();

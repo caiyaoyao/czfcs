@@ -57,7 +57,7 @@ public class FdFyxxDetailActivity extends BasicActivity {
 
     private int fjId;
 
-    private TextView tv_fjxx,tv_fz,tv_fzlx,tv_mj,tv_cx,tv_fb,tv_sssq,tv_sd,tv_lc,tv_zq,tv_rzyq,tv_fyjs,tv_rs;
+    private TextView tv_fjxx,tv_fz,tv_fzlx,tv_mj,tv_cx,tv_fb,tv_sssq,tv_sd,tv_lc,tv_zq,tv_rzyq,tv_fyjs,tv_rs,tv_ld,tv_fjh;
 
 
 
@@ -91,6 +91,8 @@ public class FdFyxxDetailActivity extends BasicActivity {
         tv_fb = findViewById(R.id.tv_fb);
         tv_sssq = findViewById(R.id.tv_sssq);
         tv_sd = findViewById(R.id.tv_sd);
+        tv_ld = findViewById(R.id.tv_ld);
+        tv_fjh = findViewById(R.id.tv_fjh);
 //        tv_lc = findViewById(R.id.tv_lc);
         tv_zq = findViewById(R.id.tv_zq);
         tv_rzyq = findViewById(R.id.tv_rzyq);
@@ -157,6 +159,9 @@ public class FdFyxxDetailActivity extends BasicActivity {
                                     tv_fyjs.setText(fjDetailBeans.getFjqk());
 
                                     tv_rs.setText(fjDetailBeans.getZksl() + "");
+
+                                    tv_ld.setText(fjDetailBeans.getLdh() + "栋");
+                                    tv_fjh.setText(fjDetailBeans.getSh() + "室");
 
 
 

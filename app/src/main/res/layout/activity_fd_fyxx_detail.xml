@@ -337,6 +337,72 @@
                         android:layout_height="@dimen/dp_40"
                         android:orientation="horizontal">
 
+                        //楼栋：
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="楼栋:"
+                                android:textColor="@color/text_main_color"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_ld"
+                                android:textColor="@color/text_main_color"
+                                android:textSize="@dimen/sp_14"
+                                android:gravity="center_vertical"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:background="@null"
+                                android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="房间号:"
+                                android:textColor="@color/text_main_color"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_fjh"
+                                android:textColor="@color/text_main_color"
+                                android:textSize="@dimen/sp_14"
+                                android:gravity="center_vertical"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:background="@null"
+                                android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_40"
+                        android:orientation="horizontal">
+
                         //水电：
                         <LinearLayout
                             android:layout_width="0dp"

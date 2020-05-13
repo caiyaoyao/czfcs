@@ -238,6 +238,15 @@
                             android:text="注册"
                             android:textColor="@color/white" />
 
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:textColor="@color/textcolor_17"
+                            android:text="(注： 房东使用开发区房东账号登录，无需注册)"
+                            android:textSize="@dimen/sp_12"/>
+
                     </LinearLayout>
 
 

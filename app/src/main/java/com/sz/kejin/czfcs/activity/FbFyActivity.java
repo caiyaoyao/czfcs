@@ -89,8 +89,8 @@ public class FbFyActivity extends BasicActivity {
     private static final String TAG = "FbFyActivity";
     private ImageView iv_back;
     private EditText et_qwzj,et_mj,et_rzxx,et_fyjs;
-    private TextView et_szxq,et_ldh,et_fjh,et_czfs,et_zflx,et_cx,et_sdxz,et_zq;
-    private LinearLayout layout_szxq,layout_ldh,layout_fjh,layout_czfs,layout_zflx,layout_cx,layout_sdxz,layout_zq;
+    private TextView et_szxq,et_ldh,et_fjh,et_czfs,et_zflx,et_cx,et_sdxz,et_zq,et_dqwz;
+    private LinearLayout layout_szxq,layout_ldh,layout_fjh,layout_czfs,layout_zflx,layout_cx,layout_sdxz,layout_zq,layout_dqwz;
 
 
     private MyGridView gvPcrPto1;
@@ -149,6 +149,7 @@ public class FbFyActivity extends BasicActivity {
         et_zq = findViewById(R.id.et_fbfy_zq);
         et_rzxx = findViewById(R.id.et_fbfy_rzxx);
         et_fyjs = findViewById(R.id.et_fbfy_fyjs);
+        et_dqwz = findViewById(R.id.et_fbfy_dqwz);
 
         layout_szxq = findViewById(R.id.layout_szxq);
         layout_ldh = findViewById(R.id.layout_ldh);
@@ -158,6 +159,8 @@ public class FbFyActivity extends BasicActivity {
         layout_cx = findViewById(R.id.layout_cx);
         layout_sdxz = findViewById(R.id.layout_sdxz);
         layout_zq = findViewById(R.id.layout_zq);
+        layout_dqwz = findViewById(R.id.layout_dqwz);
+
 
 
         gvPcrPto1 = findViewById(R.id.gv_pcr_pto1);
@@ -698,6 +701,14 @@ public class FbFyActivity extends BasicActivity {
 
                     }
                 }).setCancelable(true).show();
+            }
+        });
+
+        layout_dqwz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(FbFyActivity.this,MapActivity.class),12345);
+
             }
         });
 
