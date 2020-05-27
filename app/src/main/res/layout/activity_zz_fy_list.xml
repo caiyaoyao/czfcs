@@ -75,11 +75,36 @@
                 />
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:textColor="#8698A3"
+                android:text="区域："/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_qy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10" />
+
+        </LinearLayout>
         
         
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_48"
+            android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_marginRight="@dimen/dp_16"

@@ -251,10 +251,15 @@ public class FbFyActivity extends BasicActivity {
                                     et_rzxx.setText(fjDetailBeans.getRzxx());
                                     et_fyjs.setText(fjDetailBeans.getFjqk());
 
+                                    //设置当前位置
+
                                     bid = fjDetailBeans.getBid();
 
                                     getLdhDatas();
                                     getFjhDatas();
+
+
+
 
 
 
@@ -604,74 +609,74 @@ public class FbFyActivity extends BasicActivity {
         });
 
 
-        layout_szxq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertView("请选择小区", null, null,null, xqStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Object o, int position) {
-                        Log.i(TAG, "onItemClick: ");
-                        et_szxq.setText(xqStrs1[position]);
-                        xqId = xqBeans.get(position).getXqbh();
-                        et_ldh.setText("");
-                        et_fjh.setText("");
-
-                        getLdhDatas();
-
-                    }
-                }).setCancelable(true).show();
-            }
-        });
-
-        layout_ldh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(et_szxq.getText().toString().trim())) {
-                    ToastUtil.shortToast(FbFyActivity.this,"请先选择小区");
-                    return;
-                }
-                new AlertView("请选择楼栋号", null, null,null, ldhStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Object o, int position) {
-                        Log.i(TAG, "onItemClick: ");
-                        et_ldh.setText(ldhStrs1[position]);
-                        ldh = ldhStrs1[position];
-                        et_fjh.setText("");
-                        getFjhDatas();
-
-                    }
-                }).setCancelable(true).show();
-            }
-        });
-
-
-        layout_fjh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(et_szxq.getText().toString().trim())) {
-                    ToastUtil.shortToast(FbFyActivity.this,"请先选择小区");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(et_ldh.getText().toString().trim())) {
-                    ToastUtil.shortToast(FbFyActivity.this,"请先选择楼栋号");
-                    return;
-                }
-
-                new AlertView("请选择房间号", null, null,null, fjhStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Object o, int position) {
-                        Log.i(TAG, "onItemClick: ");
-                        et_fjh.setText(fjhStrs1[position]);
-                        fjh = fjhStrs1[position];
-                        fjId = fjhBeans.get(position).getId();
-
-                    }
-                }).setCancelable(true).show();
-
-
-            }
-        });
+//        layout_szxq.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new AlertView("请选择小区", null, null,null, xqStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(Object o, int position) {
+//                        Log.i(TAG, "onItemClick: ");
+//                        et_szxq.setText(xqStrs1[position]);
+//                        xqId = xqBeans.get(position).getXqbh();
+//                        et_ldh.setText("");
+//                        et_fjh.setText("");
+//
+//                        getLdhDatas();
+//
+//                    }
+//                }).setCancelable(true).show();
+//            }
+//        });
+//
+//        layout_ldh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (TextUtils.isEmpty(et_szxq.getText().toString().trim())) {
+//                    ToastUtil.shortToast(FbFyActivity.this,"请先选择小区");
+//                    return;
+//                }
+//                new AlertView("请选择楼栋号", null, null,null, ldhStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(Object o, int position) {
+//                        Log.i(TAG, "onItemClick: ");
+//                        et_ldh.setText(ldhStrs1[position]);
+//                        ldh = ldhStrs1[position];
+//                        et_fjh.setText("");
+//                        getFjhDatas();
+//
+//                    }
+//                }).setCancelable(true).show();
+//            }
+//        });
+//
+//
+//        layout_fjh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (TextUtils.isEmpty(et_szxq.getText().toString().trim())) {
+//                    ToastUtil.shortToast(FbFyActivity.this,"请先选择小区");
+//                    return;
+//                }
+//
+//                if (TextUtils.isEmpty(et_ldh.getText().toString().trim())) {
+//                    ToastUtil.shortToast(FbFyActivity.this,"请先选择楼栋号");
+//                    return;
+//                }
+//
+//                new AlertView("请选择房间号", null, null,null, fjhStrs1,  FbFyActivity.this, AlertView.Style.Alert, new com.bigkoo.alertview.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(Object o, int position) {
+//                        Log.i(TAG, "onItemClick: ");
+//                        et_fjh.setText(fjhStrs1[position]);
+//                        fjh = fjhStrs1[position];
+//                        fjId = fjhBeans.get(position).getId();
+//
+//                    }
+//                }).setCancelable(true).show();
+//
+//
+//            }
+//        });
 
 
 
@@ -707,7 +712,7 @@ public class FbFyActivity extends BasicActivity {
         layout_dqwz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(FbFyActivity.this,MapActivity.class),12345);
+                startActivityForResult(new Intent(FbFyActivity.this,MapActivity.class),IntentConstants.SWITCH_TO_MAP_REQUEST_CODE);
 
             }
         });
@@ -959,7 +964,7 @@ public class FbFyActivity extends BasicActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RxGalleryFinalApi.TAKE_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == RxGalleryFinalApi.TAKE_IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
             switch (type) {
                 case 1:
                     listPhotoBDAdress1.add(RxGalleryFinalApi.fileImagePath.getPath());
@@ -967,6 +972,8 @@ public class FbFyActivity extends BasicActivity {
                     gridViewAdapter1.notifyDataSetChanged();
                     break;
             }
+        } else if (requestCode == IntentConstants.SWITCH_TO_MAP_REQUEST_CODE && resultCode == RESULT_OK) {
+            et_dqwz.setText(data.getDoubleExtra(IntentConstants.jd_DATA,0.0) + "," + data.getDoubleExtra(IntentConstants.wd_DATA,0.0) );
         }
     }
 

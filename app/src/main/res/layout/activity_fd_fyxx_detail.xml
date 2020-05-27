@@ -407,6 +407,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_weight="1"
+                            android:visibility="gone"
                             android:layout_height="match_parent"
                             android:orientation="horizontal"
                             >
@@ -504,6 +505,102 @@
 
                     </LinearLayout>
 
+
+
+                    //是否有网络：
+                    <LinearLayout
+                        android:id="@+id/layout_wl"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_40"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="是否有网"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="@dimen/sp_14" />
+
+
+                        <CheckBox
+                            android:id="@+id/cb_sfyw"
+                            android:layout_width="wrap_content"
+                            android:clickable="false"
+                            android:layout_height="wrap_content"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    //是否有天然气：
+                    <LinearLayout
+                        android:id="@+id/layout_tyq"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_40"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="是否有天然气"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="@dimen/sp_14" />
+
+
+                        <CheckBox
+                            android:id="@+id/cb_sfytyq"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+
+                    </LinearLayout>
+
+                    //家电是否齐全：
+                    <LinearLayout
+                        android:id="@+id/layout_jd"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_40"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="家电是否齐全（电视、洗衣机、冰箱）"
+                            android:textColor="@color/main_text_color"
+                            android:textSize="@dimen/sp_14" />
+
+
+                        <CheckBox
+                            android:id="@+id/cb_jdsfqq"
+                            android:layout_width="wrap_content"
+                            android:clickable="false"
+                            android:layout_height="wrap_content"
+                            />
+
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -532,7 +629,7 @@
                             android:textSize="@dimen/sp_18"
                             android:textStyle="bold"
                             android:gravity="center_vertical"
-                            android:text="入住信息"/>
+                            android:text="入住要求"/>
 
 
                     </LinearLayout>
@@ -558,6 +655,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:text="入住要求:"
+                                android:visibility="gone"
                                 android:textColor="@color/text_main_color"
                                 android:textSize="@dimen/sp_14" />
 

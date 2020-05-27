@@ -61,6 +61,7 @@
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
                         android:scaleType="fitXY"
+                        android:visibility="gone"
                         android:src="@mipmap/right_arrow"/>
 
 
@@ -99,6 +100,7 @@
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
                         android:scaleType="fitXY"
+                        android:visibility="gone"
                         android:src="@mipmap/right_arrow"/>
 
 
@@ -137,6 +139,7 @@
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
                         android:scaleType="fitXY"
+                        android:visibility="gone"
                         android:src="@mipmap/right_arrow"/>
 
 
@@ -348,6 +351,7 @@
                     android:id="@+id/layout_sdxz"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_48"
+                    android:visibility="gone"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -420,6 +424,101 @@
                 </LinearLayout>
 
 
+                //是否有网络：
+                <LinearLayout
+                    android:id="@+id/layout_wl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="是否有网"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_sfyw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+
+
+                //是否有天然气：
+                <LinearLayout
+                    android:id="@+id/layout_tyq"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="是否有天然气"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_sfytyq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+
+                //家电是否齐全：
+                <LinearLayout
+                    android:id="@+id/layout_jd"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="家电是否齐全（电视、洗衣机、冰箱）"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_jdsfqq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+
+
 
                 //当前位置
                 <LinearLayout
@@ -442,7 +541,6 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/dp_20"
                         android:hint="请选择当前位置"
                         android:background="@null"
                         android:textColor="#6D7278"
@@ -523,7 +621,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="入住信息:"
+                        android:text="入住要求:"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_15"
                         android:textStyle="bold" />

@@ -18,9 +18,11 @@ import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
 import com.baidu.mapapi.map.GroundOverlayOptions;
+import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.map.SupportMapFragment;
@@ -48,6 +50,8 @@ import com.sz.kejin.czfcs.R;
 import com.sz.kejin.czfcs.adapter.ZbtsRecyclerTabAdapter;
 import com.sz.kejin.czfcs.bean.BasicTableItemBean;
 import com.sz.kejin.czfcs.constant.IntentConstants;
+import com.sz.kejin.czfcs.helper.PermissionHelper;
+import com.sz.kejin.czfcs.interfaces.OnPermissionGrantListener;
 import com.sz.kejin.czfcs.utils.overlayutil.PoiOverlay;
 
 import java.util.ArrayList;
@@ -70,11 +74,14 @@ public class PoiSearchActivity extends BasicActivity implements
     private int loadIndex = 0;
 
 
-    LatLng center = new LatLng(39.92235, 116.380338);
+    private double lat = 0.0,lng = 0.0;
+
+
+    private LatLng center ;
     int radius = 500;
-    LatLng southwest = new LatLng(39.92235, 116.380338);
-    LatLng northeast = new LatLng(39.947246, 116.414977);
-    LatLngBounds searchbound = new LatLngBounds.Builder().include(southwest).include(northeast).build();
+//    LatLng southwest = new LatLng(39.92235, 116.380338);
+//    LatLng northeast = new LatLng(39.947246, 116.414977);
+//    LatLngBounds searchbound = new LatLngBounds.Builder().include(southwest).include(northeast).build();
 
     int searchType = 0;  // 搜索的类型，在显示时区分
 
@@ -128,9 +135,25 @@ public class PoiSearchActivity extends BasicActivity implements
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        setTitle("周边探索");
+
+        getPermissionHelper().requestPermission(new OnPermissionGrantListener.OnPermissionGrantListenerAdapter() {
+            @Override
+            public void onPermissionGranted(PermissionHelper.Permission... grantedPermissions) {
+                super.onPermissionGranted(grantedPermissions);
+            }
+        },PermissionHelper.Permission.WRITE_EXTERNAL_STORAGE, PermissionHelper.Permission.READ_EXTERNAL_STORAGE, PermissionHelper.Permission.CAMERA, PermissionHelper.Permission.ACCESS_COARSE_LOCATION);
 
         keyword = getIntent().getStringExtra(IntentConstants.FJ_DATA);
+        setTitle("周边" + keyword);
+
+        lat = getIntent().getDoubleExtra(IntentConstants.jd_DATA,0.0);
+        lng = getIntent().getDoubleExtra(IntentConstants.wd_DATA,0.0);
+
+
+        center = new LatLng(lat, lng);
+
+
+
 
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(this);
@@ -142,6 +165,10 @@ public class PoiSearchActivity extends BasicActivity implements
 
         mBaiduMap = ((SupportMapFragment )(getSupportFragmentManager().findFragmentById(R.id.map))).getBaiduMap();
 
+
+        LatLng latLng = new LatLng(lat,lng);
+        MapStatus status = new MapStatus.Builder().target(latLng).zoom(18).build();
+        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(status));
 
         for (int i = 0; i < rvImgIds1.length; i++) {
             BasicTableItemBean item = new BasicTableItemBean(rvImgIds1[i], rvDatas1[i]);
@@ -167,6 +194,7 @@ public class PoiSearchActivity extends BasicActivity implements
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 keyword = rvDatas1[position];
+                setTitle("周边" + keyword);
                 searchNearbyProcess();
             }
         });
@@ -205,6 +233,7 @@ public class PoiSearchActivity extends BasicActivity implements
         if (result == null || result.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {
             Toast.makeText(PoiSearchActivity.this, "未找到结果", Toast.LENGTH_LONG)
                     .show();
+
             return;
         }
         if (result.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -220,7 +249,7 @@ public class PoiSearchActivity extends BasicActivity implements
                     showNearbyArea(center, radius);
                     break;
                 case 3:
-                    showBound(searchbound);
+//                    showBound(searchbound);
                     break;
                 default:
                     break;

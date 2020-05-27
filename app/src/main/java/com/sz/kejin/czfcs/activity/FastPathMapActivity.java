@@ -56,6 +56,8 @@ import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.sz.kejin.czfcs.R;
 import com.sz.kejin.czfcs.adapter.RouteLineAdapter;
+import com.sz.kejin.czfcs.helper.PermissionHelper;
+import com.sz.kejin.czfcs.interfaces.OnPermissionGrantListener;
 import com.sz.kejin.czfcs.utils.overlayutil.BikingRouteOverlay;
 import com.sz.kejin.czfcs.utils.overlayutil.DrivingRouteOverlay;
 import com.sz.kejin.czfcs.utils.overlayutil.OverlayManager;
@@ -153,6 +155,13 @@ public class FastPathMapActivity extends BasicActivity implements BaiduMap.OnMap
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+
+        getPermissionHelper().requestPermission(new OnPermissionGrantListener.OnPermissionGrantListenerAdapter() {
+            @Override
+            public void onPermissionGranted(PermissionHelper.Permission... grantedPermissions) {
+                super.onPermissionGranted(grantedPermissions);
+            }
+        },PermissionHelper.Permission.WRITE_EXTERNAL_STORAGE, PermissionHelper.Permission.READ_EXTERNAL_STORAGE, PermissionHelper.Permission.CAMERA, PermissionHelper.Permission.ACCESS_COARSE_LOCATION);
 
         setTitle("路径规划");
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext

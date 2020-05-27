@@ -21,6 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.model.LatLng;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -122,6 +127,8 @@ public class FyxxDetailActivity extends BasicActivity {
     private int[] rvImgIds1 = new int[]{R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs,R.mipmap.img_cs};
     private ZbtsRecyclerTabAdapter zbtsAdapter;
 
+    private MapView mapView;
+
 
     @Override
     protected int getLayoutId() {
@@ -170,6 +177,9 @@ public class FyxxDetailActivity extends BasicActivity {
         rv_zbts = findViewById(R.id.rv_fyxx_detail_zbts);
         rv_zbts.setLayoutManager(new StaggeredGridLayoutManager(5, LinearLayoutManager.VERTICAL));
 
+
+        mapView = findViewById(R.id.mv_fyxx_detail);
+
    }
 
     @Override
@@ -182,6 +192,7 @@ public class FyxxDetailActivity extends BasicActivity {
         }
         zbtsAdapter = new ZbtsRecyclerTabAdapter(tableItemData1);
         rv_zbts.setAdapter(zbtsAdapter);
+
 
     }
 
@@ -250,6 +261,14 @@ public class FyxxDetailActivity extends BasicActivity {
                                         iv_sc.setImageResource(R.mipmap.img_wsc);
                                         tv_sc.setText("收藏");
                                     }
+
+
+                                    //设置地图
+
+                                    BaiduMap baiduMap = mapView.getMap();
+                                    LatLng latLng = new LatLng(31.359946,120.956933);
+                                    MapStatus status = new MapStatus.Builder().target(latLng).zoom(18).build();
+                                    baiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(status));
 
 
 
@@ -888,6 +907,8 @@ public class FyxxDetailActivity extends BasicActivity {
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 Intent intent = new Intent(FyxxDetailActivity.this, PoiSearchActivity.class);
                 intent.putExtra(IntentConstants.FJ_DATA, rvDatas1[position]);
+                intent.putExtra(IntentConstants.jd_DATA, 31.359946);
+                intent.putExtra(IntentConstants.wd_DATA, 120.956933);
                 startActivity(intent);
             }
         });

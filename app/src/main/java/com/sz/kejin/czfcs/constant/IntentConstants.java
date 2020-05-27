@@ -15,6 +15,11 @@ public class IntentConstants {
 
 
 
+    public  static  final  int SWITCH_TO_MAP_REQUEST_CODE = 12456;
+
+
+
+
     public static final String FJ_DATA = "fjData";
     public static final String ZH_DATA = "zhData";
     public static final String SSY_LIST_BH = "ssyJcBh";
@@ -22,6 +27,18 @@ public class IntentConstants {
     public static final String ZH_DATA_Detail = "zhDataDetail";
     public static final String XQ_DATA = "xqData";
     public static final String SQ_DATA = "sqData";
+
+
+    public static final String jd_DATA = "jd";
+    public static final String wd_DATA = "wd";
+
+
+
+    public static final String WDFY_LIST_SRC = "fromType";
+    public  static  final  int DJZK = 10012;//登记租客
+    public  static  final  int WDFY = 10013;//我的房源
+
+
 
 
 }

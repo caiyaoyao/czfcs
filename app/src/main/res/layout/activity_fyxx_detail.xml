@@ -33,14 +33,14 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingBottom="@dimen/dp_10"
-                    android:paddingLeft="@dimen/dp_16"
-                    android:paddingRight="@dimen/dp_16"
                     android:orientation="vertical">
 
                     //第一部分
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:layout_height="@dimen/dp_180">
 
                         <androidx.viewpager.widget.ViewPager
@@ -70,6 +70,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:orientation="vertical">
 
                         <TextView
@@ -148,6 +150,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_20"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:orientation="vertical">
 
 
@@ -410,6 +414,7 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:visibility="gone"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
                                 >
@@ -509,7 +514,99 @@
                         </LinearLayout>
 
 
+                        //是否有网络：
+                        <LinearLayout
+                            android:id="@+id/layout_wl"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_40"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            >
 
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="是否有网"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/sp_14" />
+
+
+                            <CheckBox
+                                android:id="@+id/cb_sfyw"
+                                android:layout_width="wrap_content"
+                                android:clickable="false"
+                                android:layout_height="wrap_content"
+                                />
+
+
+                        </LinearLayout>
+
+
+                        //是否有天然气：
+                        <LinearLayout
+                            android:id="@+id/layout_tyq"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_40"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            >
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="是否有天然气"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/sp_14" />
+
+
+                            <CheckBox
+                                android:id="@+id/cb_sfytyq"
+                                android:clickable="false"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+
+                        </LinearLayout>
+
+                        //家电是否齐全：
+                        <LinearLayout
+                            android:id="@+id/layout_jd"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_40"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            >
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="家电是否齐全（电视、洗衣机、冰箱）"
+                                android:textColor="@color/main_text_color"
+                                android:textSize="@dimen/sp_14" />
+
+
+                            <CheckBox
+                                android:id="@+id/cb_jdsfqq"
+                                android:layout_width="wrap_content"
+                                android:clickable="false"
+                                android:layout_height="wrap_content"
+                                />
+
+
+                        </LinearLayout>
 
 
 
@@ -529,6 +626,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
+                            android:paddingLeft="@dimen/dp_16"
+                            android:paddingRight="@dimen/dp_16"
                             android:orientation="horizontal">
 
                             <TextView
@@ -549,6 +648,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp_30"
                             android:layout_marginTop="@dimen/dp_10"
+                            android:paddingLeft="@dimen/dp_16"
+                            android:paddingRight="@dimen/dp_16"
                             android:orientation="horizontal">
 
                             <TextView
@@ -582,12 +683,16 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_height="@dimen/dp_160"
+                            android:layout_marginLeft="@dimen/dp_16"
+                            android:layout_marginRight="@dimen/dp_16"
                             android:clickable="true"/>
 
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_16"
+                            android:paddingRight="@dimen/dp_16"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_marginBottom="@dimen/dp_10"
                             android:orientation="horizontal">
@@ -628,6 +733,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:orientation="vertical">
 
 
@@ -646,7 +753,7 @@
                                 android:textSize="@dimen/sp_18"
                                 android:textStyle="bold"
                                 android:gravity="center_vertical"
-                                android:text="入住信息"/>
+                                android:text="入住要求"/>
 
 
                         </LinearLayout>
@@ -672,6 +779,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center_vertical"
                                     android:text="入住要求:"
+                                    android:visibility="gone"
                                     android:textColor="@color/text_main_color"
                                     android:textSize="@dimen/sp_14" />
 
@@ -703,6 +811,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_20"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:orientation="vertical">
 
 
@@ -789,6 +899,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_20"
+                        android:paddingLeft="@dimen/dp_16"
+                        android:paddingRight="@dimen/dp_16"
                         android:orientation="vertical">
 
 
@@ -859,8 +971,8 @@
             android:elevation="2dp"
             android:orientation="horizontal"
             android:layout_marginBottom="@dimen/dp_10"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/detail_page_do_comment"

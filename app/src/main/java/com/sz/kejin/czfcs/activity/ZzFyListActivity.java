@@ -28,6 +28,7 @@ import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sz.kejin.czfcs.R;
+import com.sz.kejin.czfcs.adapter.FjlbLdhRecyclerTabAdapter;
 import com.sz.kejin.czfcs.adapter.FyListLoadMoreAdapter;
 import com.sz.kejin.czfcs.adapter.GuideAdapter;
 import com.sz.kejin.czfcs.adapter.ListGridAdapter;
@@ -115,6 +116,15 @@ public class ZzFyListActivity extends BasicActivity {
     private Button btnSearch;
 
 
+    private RecyclerView rv1;
+    private FjlbLdhRecyclerTabAdapter adapter1;
+    private ArrayList<BasicTableItemBean> tableItemData1 = new ArrayList<>();
+    private String[] qyStrs = new String[]{"不限","蓬朗","兵希","孔巷"};
+
+    private String keyword = "";
+
+
+
 
 
     @Override
@@ -128,6 +138,10 @@ public class ZzFyListActivity extends BasicActivity {
 
         et_search = findViewById(R.id.et_search);
         btnSearch = findViewById(R.id.btn_search);
+
+
+        rv1 = findViewById(R.id.rv_qy);
+        rv1.setLayoutManager(new StaggeredGridLayoutManager(4, LinearLayoutManager.VERTICAL));
 
         layout1 = findViewById(R.id.fy_layout1);
         layout2 = findViewById(R.id.fy_layout2);
@@ -146,6 +160,7 @@ public class ZzFyListActivity extends BasicActivity {
         rv_main_fyxx.setNestedScrollingEnabled(false);
         rv_main_fyxx.addItemDecoration(new GridSpacingItemDecoration(1,40,false));
 
+
     }
 
 
@@ -159,6 +174,17 @@ public class ZzFyListActivity extends BasicActivity {
         getYzjList();
         getHxList();
         getCzfsList();
+
+
+        for (int i = 0; i < qyStrs.length; i++) {
+            BasicTableItemBean item = new BasicTableItemBean(i + 1,qyStrs[i]);
+            tableItemData1.add(i, item);
+        }
+
+
+        adapter1 = new FjlbLdhRecyclerTabAdapter(tableItemData1,this);
+        rv1.setAdapter(adapter1);
+        adapter1.notifyDataSetChanged();
 
         adapter = new FyListLoadMoreAdapter(this);
         adapter.setAnimationEnable(true);
@@ -231,7 +257,12 @@ public class ZzFyListActivity extends BasicActivity {
         params.put("lx",lxStr);
         params.put("hx",hxStr);
         params.put("yzj", yzjStr);
-        params.put("keyword", et_search.getText().toString());
+
+        if (!TextUtils.isEmpty(keyword)) {
+            params.put("keyword", keyword);
+        } else {
+            params.put("keyword", et_search.getText().toString());
+        }
 
 
         OkHttpHelper.enqueue(OkHttpHelper.GET_FY_LIST, params, new OkHttpHelper.Callback() {
@@ -556,6 +587,32 @@ public class ZzFyListActivity extends BasicActivity {
                 finish();
             }
         });
+
+        adapter1.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                Log.i(TAG, "onItemClick: rv1:" + position);
+
+                if (position == 0) {
+                    keyword = "";
+                } else {
+                    keyword = tableItemData1.get(position).getTitle();
+                }
+
+                TextView textView  = (TextView) adapter.getViewByPosition(position, R.id.mTv_tab_title);
+                textView.setSelected(true);
+                for (int i = 0; i < adapter.getItemCount(); i++) {
+                    if (adapter.getItemId(i) != adapter.getItemId(position)) {
+                        TextView textView1  = (TextView) adapter.getViewByPosition(i, R.id.mTv_tab_title);
+                        textView1.setSelected(false);
+                    }
+                }
+
+                refresh();
+
+            }
+        });
+
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override

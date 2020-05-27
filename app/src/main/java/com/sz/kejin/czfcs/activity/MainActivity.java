@@ -84,7 +84,8 @@ public class MainActivity extends BasicActivity {
 
     private RecyclerView rv_mian;
     private ArrayList<BasicTableItemBean> tableItemData1 = new ArrayList<>();
-    private String[] rvDatas1 = new String[]{"整租","合租","登记租客","发布房源"};
+//    private String[] rvDatas1 = new String[]{"整租","合租","登记租客","发布房源"};
+    private String[] rvDatas1 = new String[]{"整租","合租","登记租客","我的房源"};
     private int[] rvImgIds1 = new int[]{R.mipmap.main_zz,R.mipmap.main_hz,R.mipmap.main_djzk,R.mipmap.main_fbfy};
     private MainRecyclerTabAdapter adapter1;
 
@@ -441,20 +442,38 @@ public class MainActivity extends BasicActivity {
                             if (Constants.USER_TYPE_YK.equals(user_type)) {
                                 ToastUtil.shortToast(MainActivity.this, getString(R.string.fd_type_ts));
                             } else {
-                                startActivity(new Intent(MainActivity.this,WdFyListActivity.class));
+                                Intent intent = new Intent(MainActivity.this, WdFyListActivity.class);
+                                intent.putExtra(IntentConstants.WDFY_LIST_SRC, IntentConstants.DJZK);
+                                startActivity(intent);
                             }
                         } else {
                             ToastUtil.shortToast(MainActivity.this,"请先登录");
                             startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         }
                         break;
-                    case 3://发布房源
+//                    case 3://发布房源
+//                        //判断是否登录
+//                        if (isLogined) {
+//                            if (Constants.USER_TYPE_YK.equals(user_type)) {
+//                                ToastUtil.shortToast(MainActivity.this, getString(R.string.fd_type_ts));
+//                            } else {
+//                                startActivity(new Intent(MainActivity.this,SqListActivity.class));
+//                            }
+//                        } else {
+//                            ToastUtil.shortToast(MainActivity.this,"请先登录");
+//                            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+//                        }
+//                        break;
+
+                    case 3://我的房源
                         //判断是否登录
                         if (isLogined) {
                             if (Constants.USER_TYPE_YK.equals(user_type)) {
                                 ToastUtil.shortToast(MainActivity.this, getString(R.string.fd_type_ts));
                             } else {
-                                startActivity(new Intent(MainActivity.this,SqListActivity.class));
+                                Intent intent = new Intent(MainActivity.this, WdFyListActivity.class);
+                                intent.putExtra(IntentConstants.WDFY_LIST_SRC, IntentConstants.WDFY);
+                                startActivity(intent);
                             }
                         } else {
                             ToastUtil.shortToast(MainActivity.this,"请先登录");

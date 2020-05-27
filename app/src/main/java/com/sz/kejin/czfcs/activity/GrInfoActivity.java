@@ -45,6 +45,7 @@ import com.sz.kejin.czfcs.bean.ImageUploadBean;
 import com.sz.kejin.czfcs.bean.SqBeans;
 import com.sz.kejin.czfcs.bean.UserInfoBean;
 import com.sz.kejin.czfcs.constant.Constants;
+import com.sz.kejin.czfcs.constant.IntentConstants;
 import com.sz.kejin.czfcs.constant.SPConstants;
 import com.sz.kejin.czfcs.helper.GridSpacingItemDecoration;
 import com.sz.kejin.czfcs.helper.OkHttpHelper;
@@ -146,7 +147,7 @@ public class GrInfoActivity extends BasicActivity {
                                     tv_sjh.setText(userInfoBean.getLxdh());
 
                                     if (!TextUtils.isEmpty(userInfoBean.getFwsl())) {
-                                        tv_num.setText("您已发布房源" + userInfoBean.getFwsl() + "套");
+                                        tv_num.setText("共有房源" + userInfoBean.getFwsl() + "套");
                                     }
 
 
@@ -239,7 +240,11 @@ public class GrInfoActivity extends BasicActivity {
         tv_fbfy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GrInfoActivity.this,SqListActivity.class));
+//                startActivity(new Intent(GrInfoActivity.this,SqListActivity.class));
+                Intent intent = new Intent(GrInfoActivity.this, WdFyListActivity.class);
+                intent.putExtra(IntentConstants.WDFY_LIST_SRC, IntentConstants.WDFY);
+                startActivity(intent);
+
             }
         });
 
@@ -255,7 +260,9 @@ public class GrInfoActivity extends BasicActivity {
                         if (Constants.USER_TYPE_YK.equals(user_type)) {
                             ToastUtil.shortToast(GrInfoActivity.this, getString(R.string.fd_type_ts));
                         } else {
-                            startActivity(new Intent(GrInfoActivity.this,WdFyListActivity.class));
+                            Intent intent = new Intent(GrInfoActivity.this, WdFyListActivity.class);
+                            intent.putExtra(IntentConstants.WDFY_LIST_SRC, IntentConstants.WDFY);
+                            startActivity(intent);
                         }
                         break;
                     case 2://我的收藏

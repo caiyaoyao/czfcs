@@ -126,7 +126,7 @@
                         android:id="@+id/tv_fbfy"
                         android:layout_width="@dimen/dp_70"
                         android:layout_height="@dimen/dp_30"
-                        android:text="发布房源"
+                        android:text="我的房源"
                         android:gravity="center"
                         android:textSize="@dimen/sp_13"
                         android:textStyle="bold"

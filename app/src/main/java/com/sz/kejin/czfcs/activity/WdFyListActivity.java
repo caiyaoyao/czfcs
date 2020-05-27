@@ -77,6 +77,8 @@ public class WdFyListActivity extends BasicActivity {
 
     private Button btnSearch;
 
+    private int srcType = IntentConstants.WDFY;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wd_fy_list;
@@ -100,7 +102,18 @@ public class WdFyListActivity extends BasicActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        setTitle("我的房源");
+
+        srcType = getIntent().getIntExtra(IntentConstants.WDFY_LIST_SRC, IntentConstants.WDFY);
+
+        switch (srcType) {
+            case IntentConstants.DJZK:
+                setTitle("登记租客");
+                break;
+            case IntentConstants.WDFY:
+                setTitle("我的房源");
+                break;
+        }
+
 
         adapter = new FyListLoadMoreAdapter(this);
         adapter.setAnimationEnable(true);
@@ -258,9 +271,21 @@ public class WdFyListActivity extends BasicActivity {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                Intent intent = new Intent(WdFyListActivity.this, FdFyxxDetailActivity.class);
+
+                Intent intent = null;
+
+                switch (srcType) {
+                    case IntentConstants.DJZK:
+                        intent = new Intent(WdFyListActivity.this, ZhListActivity.class);
+                        break;
+                    case IntentConstants.WDFY:
+                        intent = new Intent(WdFyListActivity.this, FdFyxxDetailActivity.class);
+                        break;
+                }
+
                 intent.putExtra(IntentConstants.FJ_DATA, datas.get(position).getId());
                 startActivity(intent);
+
             }
         });
 

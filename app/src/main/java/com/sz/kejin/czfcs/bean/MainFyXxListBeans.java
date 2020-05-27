@@ -78,7 +78,7 @@ public class MainFyXxListBeans implements Serializable {
     private String csqLoginid;
     private String bscLoginid;
     private int sh;
-    private int jzmj;
+    private String jzmj;
     private String hx;
     private String jztype;
     private String jztype1;
@@ -91,7 +91,7 @@ public class MainFyXxListBeans implements Serializable {
     private String posttime;
     private boolean del;
     private boolean ifgl;
-    private int glmj;
+    private String glmj;
     private boolean ifck;
     private String ckh;
     private String ckbz;
@@ -121,7 +121,7 @@ public class MainFyXxListBeans implements Serializable {
     private int zksl;
     private String zj;
     private String czfs;
-    private int mj;
+    private String mj;
     private String cx;
     private String sdxz;
     private String zq;
@@ -256,11 +256,11 @@ public class MainFyXxListBeans implements Serializable {
         this.sh = sh;
     }
 
-    public int getJzmj() {
+    public String getJzmj() {
         return jzmj;
     }
 
-    public void setJzmj(int jzmj) {
+    public void setJzmj(String jzmj) {
         this.jzmj = jzmj;
     }
 
@@ -360,11 +360,11 @@ public class MainFyXxListBeans implements Serializable {
         this.ifgl = ifgl;
     }
 
-    public int getGlmj() {
+    public String getGlmj() {
         return glmj;
     }
 
-    public void setGlmj(int glmj) {
+    public void setGlmj(String glmj) {
         this.glmj = glmj;
     }
 
@@ -600,11 +600,11 @@ public class MainFyXxListBeans implements Serializable {
         this.czfs = czfs;
     }
 
-    public int getMj() {
+    public String getMj() {
         return mj;
     }
 
-    public void setMj(int mj) {
+    public void setMj(String mj) {
         this.mj = mj;
     }
 

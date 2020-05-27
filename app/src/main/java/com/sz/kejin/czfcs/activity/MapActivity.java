@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,9 @@ import com.bigkoo.alertview.AlertView;
 import com.bigkoo.alertview.OnDismissListener;
 import com.bigkoo.alertview.OnItemClickListener;
 import com.sz.kejin.czfcs.R;
+import com.sz.kejin.czfcs.constant.IntentConstants;
+import com.sz.kejin.czfcs.helper.PermissionHelper;
+import com.sz.kejin.czfcs.interfaces.OnPermissionGrantListener;
 
 
 import java.util.ArrayList;
@@ -50,13 +54,15 @@ import java.util.List;
 
 //import com.kjce.dshbgt.Upload.UploadListActivity;
 
-public class MapActivity extends AppCompatActivity implements OnItemClickListener, OnDismissListener {
+public class MapActivity extends BasicActivity implements OnItemClickListener, OnDismissListener {
+    private static final String TAG = "MapActivity";
 
     MapView mMapView = null;
     BaiduMap mBaiduMap;
-    private Toolbar toolBar;
     Button zoomOutBtn;
     Button zoomInBtn;
+
+    private  Button locationBtn;
 
     Button currentLocationBtn;
     Button clickLocationBtn;
@@ -107,27 +113,49 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
 
     String from = "";
 
+    private ImageView iv_back,iv_title_right;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_map;
+    }
+
+    @Override
+    protected void initView() {
+        iv_title_right = findViewById(R.id.iv_search);
+        iv_title_right.setVisibility(View.VISIBLE);
+        iv_title_right.setImageResource(R.mipmap.help);
+
+        iv_back = findViewById(R.id.iv_title_back);
+
+        // 获取地图控件引用
+        mMapView = (MapView) findViewById(R.id.bmapView);
+
+        // 点击定位按钮
+        locationBtn = (Button) findViewById(R.id.btn_location);
+
+        // 点击当前位置曝光按钮
+        currentLocationBtn = (Button) findViewById(R.id.btn_currentLocation);
+
+        // 点击点击位置曝光按钮
+        clickLocationBtn = (Button) findViewById(R.id.btn_clickLocation);
+
+
+        // 放大,缩小按钮
+        zoomOutBtn = (Button) findViewById(R.id.btn_zoom_out);
+
+        zoomInBtn = (Button) findViewById(R.id.btn_zoom_in);
+
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        setTitle("坐标选择");
 
         // 在使用SDK各组件之前初始化context信息，传入ApplicationContext
         // 注意该方法要再setContentView方法之前实现
         SDKInitializer.initialize(getApplicationContext());
-
-        setContentView(R.layout.activity_map);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tb_navigation);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        toolBar = (Toolbar) findViewById(R.id.tb_navigation);
-        toolBar.inflateMenu(R.menu.help_tool_bar);
-        toolBar.setOnMenuItemClickListener(myMenuItemClickListener);
 
         Intent intent = getIntent();
         if (savedInstanceState == null) {
@@ -136,15 +164,11 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
             from = savedInstanceState.getString("from");
         }
 
-        // 获取地图控件引用
-        mMapView = (MapView) findViewById(R.id.bmapView);
-
         // 设置定位模式
         mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
         // 设置logo位置
         mMapView.setLogoPosition(LogoPosition.logoPostionRightTop);
         // 地图初始化
-        mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         mUiSettings = mBaiduMap.getUiSettings();
         mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
@@ -161,7 +185,7 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         mMapView.showZoomControls(false);
 
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
-                        mCurrentMode, true, mCurrentMarker));
+                mCurrentMode, true, mCurrentMarker));
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
         // 定位初始化
@@ -175,18 +199,8 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
             mLocClient.start();
         }
 
-        // 点击定位按钮
-        Button locationBtn = (Button) findViewById(R.id.btn_location);
-        locationBtn.setOnClickListener(getMyCurrentLocationListener);
-        // 放大,缩小按钮
-        zoomOutBtn = (Button) findViewById(R.id.btn_zoom_out);
-        zoomOutBtn.setOnClickListener(zoomOutListener);
 
-        zoomInBtn = (Button) findViewById(R.id.btn_zoom_in);
-        zoomInBtn.setOnClickListener(zoomInListener);
 
-        // 初始化长按监听
-        initLongclickListener();
 
         bd = BitmapDescriptorFactory.fromResource(R.mipmap.icon_gcoding);
 
@@ -194,15 +208,49 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         tvView = new Button(getApplicationContext());
         tvView.setBackgroundResource(R.mipmap.dialog);
 
-        // 点击当前位置曝光按钮
-        currentLocationBtn = (Button) findViewById(R.id.btn_currentLocation);
-        currentLocationBtn.setOnClickListener(clickCurrentLocationListener);
-        // 点击点击位置曝光按钮
-        clickLocationBtn = (Button) findViewById(R.id.btn_clickLocation);
-        clickLocationBtn.setOnClickListener(clickClickLocationListener);
 
         isClickBtnShow = false;
     }
+
+    @Override
+    protected void initListener() {
+
+        getPermissionHelper().requestPermission(new OnPermissionGrantListener.OnPermissionGrantListenerAdapter() {
+            @Override
+            public void onPermissionGranted(PermissionHelper.Permission... grantedPermissions) {
+                super.onPermissionGranted(grantedPermissions);
+            }
+        },PermissionHelper.Permission.WRITE_EXTERNAL_STORAGE, PermissionHelper.Permission.READ_EXTERNAL_STORAGE, PermissionHelper.Permission.CAMERA, PermissionHelper.Permission.ACCESS_COARSE_LOCATION);
+
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        locationBtn.setOnClickListener(getMyCurrentLocationListener);
+        currentLocationBtn.setOnClickListener(clickCurrentLocationListener);
+        clickLocationBtn.setOnClickListener(clickClickLocationListener);
+
+        zoomOutBtn.setOnClickListener(zoomOutListener);
+        zoomInBtn.setOnClickListener(zoomInListener);
+
+
+        // 初始化长按监听
+        initLongclickListener();
+
+
+        iv_title_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertView("帮助","长按地图，在地图上添加标注点\n\n1.可以选择获取当前位置坐标点。\n\n2.可以选择获取点击位置坐标点。",
+                        "确定",null,null,MapActivity.this, AlertView.Style.Alert,MapActivity.this).show();
+            }
+        });
+
+    }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -210,20 +258,6 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         outState.putString("from", from);
     }
 
-    /**
-     * toolBar菜单栏监听
-     */
-    public Toolbar.OnMenuItemClickListener myMenuItemClickListener = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            int menuItemId = item.getItemId();
-            if (menuItemId == R.id.item_help) {
-                new AlertView("帮助","长按地图，在地图上添加标注点\n\n1.可以选择获取当前位置坐标点。\n\n2.可以选择获取点击位置坐标点。",
-                        "确定",null,null,MapActivity.this, AlertView.Style.Alert,MapActivity.this).show();
-            }
-            return true;
-        }
-    };
 
     /**
      * 配置定位sdk参数
@@ -579,63 +613,20 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         public void onClick(View v) {
             if (currentLocation == null) {
                 Toast.makeText(MapActivity.this, "定位失败,请开启定位权限!", Toast.LENGTH_SHORT).show();
-//                if (from.equals("1")) {
-//                    Intent intent = new Intent(MapActivity.this, EmergencyResponseUploadActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("2")) {
-//                    Intent intent = new Intent(MapActivity.this, TzzlbInputActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("3")) {
-//                    Intent intent = new Intent(MapActivity.this, AddXhRecordActivity.class);
-//                    startActivity(intent);
-//                }
-//                else if (from.equals("0")) {
-//                    Intent intent = new Intent(MapActivity.this, EventUploadActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("2")) {
-//                    Intent intent = new Intent(MapActivity.this, WgyFinishEventUploadActivity.class);
-//                    startActivity(intent);
-//                }
+
                 return;
-            }
-            // 跳转到其他Activity
-//            if (from.equals("1")) {
-//                Intent intent = new Intent(MapActivity.this, EmergencyResponseUploadActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            } else if (from.equals("2")) {
-//                Intent intent = new Intent(MapActivity.this, TzzlbInputActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            }  else if (from.equals("3")) {
-//                Intent intent = new Intent(MapActivity.this, AddXhRecordActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            }
-//            else if (from.equals("0")) {
-//                Intent intent = new Intent(MapActivity.this, EventUploadActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            } else if (from.equals("2")) {
-//                Intent intent = new Intent(MapActivity.this, WgyFinishEventUploadActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            }
+            } else {
+                Log.i(TAG, "onClick: 当前坐标点" + jn_log + "-----" + jn_lat);
+
+                Intent intent = new Intent();
+                intent.putExtra(IntentConstants.jd_DATA, jn_lat);
+                intent.putExtra(IntentConstants.wd_DATA, jn_log);
+
+                setResult(RESULT_OK,intent);
+
+                finish();
+            } 
+
 
         }
     };
@@ -648,67 +639,23 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         public void onClick(View v) {
             if (currentLocation == null) {
                 Toast.makeText(MapActivity.this, "定位失败,请开启定位权限!", Toast.LENGTH_SHORT).show();
-//                if (from.equals("1")) {
-//                    Intent intent = new Intent(MapActivity.this, EmergencyResponseUploadActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("2")) {
-//                    Intent intent = new Intent(MapActivity.this, TzzlbInputActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("3")) {
-//                    Intent intent = new Intent(MapActivity.this, AddXhRecordActivity.class);
-//                    startActivity(intent);
-//                }
-//                else if (from.equals("0")) {
-//                    Intent intent = new Intent(MapActivity.this, EventUploadActivity.class);
-//                    startActivity(intent);
-//                } else if (from.equals("2")) {
-//                    Intent intent = new Intent(MapActivity.this, WgyFinishEventUploadActivity.class);
-//                    startActivity(intent);
-//                }
                 return;
-            }
-            // 跳转到其他Activity
-//            if (from.equals("1")) {
-//                // 跳转到其他Activity
-//                Intent intent = new Intent(MapActivity.this, EmergencyResponseUploadActivity.class);
-//                intent.putExtra(CURRENT_LOG, click_log);
-//                intent.putExtra(CURRENT_LAT, click_lat);
-//                intent.putExtra(TYPE, "clickLocation");
-//                startActivity(intent);
-//            }  else if (from.equals("2")) {
-//                // 跳转到其他Activity
-//                Intent intent = new Intent(MapActivity.this, TzzlbInputActivity.class);
-//                intent.putExtra(CURRENT_LOG, click_log);
-//                intent.putExtra(CURRENT_LAT, click_lat);
-//                intent.putExtra(TYPE, "clickLocation");
-//                startActivity(intent);
-//            } else if (from.equals("3")) {
-//                Intent intent = new Intent(MapActivity.this, AddXhRecordActivity.class);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            }
-//            else if (from.equals("0")) {
-//                // 跳转到其他Activity
-//                Intent intent = new Intent(MapActivity.this, EventUploadActivity.class);
-//                intent.putExtra(CURRENT_LOG, click_log);
-//                intent.putExtra(CURRENT_LAT, click_lat);
-//                intent.putExtra(TYPE, "clickLocation");
-//                startActivity(intent);
-//            } else if (from.equals("2")) {
-//                Intent intent = new Intent(MapActivity.this, WgyFinishEventUploadActivity.class);
-//                Log.i("当前坐标点", jn_log + "-----" + jn_lat);
-//                intent.putExtra(CURRENT_LOG, jn_log);
-//                intent.putExtra(CURRENT_LAT, jn_lat);
-//                intent.putExtra(TYPE, "crrentLocation");
-//                startActivity(intent);
-//            }
+            } else {
+                Log.i(TAG, "onClick: 点击位置坐标点" + click_log + "-----" + click_lat);
+
+                Intent intent = new Intent();
+                intent.putExtra(IntentConstants.jd_DATA, click_lat);
+                intent.putExtra(IntentConstants.wd_DATA, click_log);
+
+                setResult(RESULT_OK,intent);
+
+                finish();
+            } 
         }
     };
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         // 退出时销毁定位
         mLocClient.stop();
@@ -721,6 +668,8 @@ public class MapActivity extends AppCompatActivity implements OnItemClickListene
         mLocClient.stop();
 //        OkHttpUtils.getInstance().cancelTag(MapActivity.this);//取消以Activity.this作为tag的请求
     }
+
+
 
     @Override
     protected void onResume() {
